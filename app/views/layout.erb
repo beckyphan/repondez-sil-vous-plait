@@ -15,21 +15,20 @@
   </head>
   <body>
     <div class="wrapper">
-      <nav>
-        <ul>
-          <li><a href = '/'>Home</a></li>
+      <nav class="topnav">
+          <a href = '/'>Home</a>
           <% if logged_in? %>
-            <li><a href='/:user/guests'>My Guests</a></li>
-            <li><a href='/logout'>Log-Out</a></li>
+            <a href='/:user/guests'>My Guests</a>
+            <a href='/logout'>Log-Out</a>
           <% else %>
-            <li><a href='/login'>Sign-Up/Log-In</a></li>
+            <a href='/login'>Sign-Up/Log-In</a>
           <% end %>
       </nav>
 
         <%= yield %>
 
       <footer class="branding">
-        <small>&copy; 2019 <strong>Répondez S'il Vous Plaît</strong></small>
+        <small>&copy; 2019 <strong>Répondez S'il Vous Plaît</strong> by <strong>Becky Phan</strong></small>
       </footer>
     </div>
 
