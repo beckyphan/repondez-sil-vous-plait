@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
     @user = current_user
 
-    erb :'guests/edit'
+    erb :'users/edit'
   end
 
   get '/users/:slug' do
