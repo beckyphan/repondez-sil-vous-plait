@@ -25,6 +25,10 @@
         <% end %>
     </nav>
     <div class="wrapper">
+      
+        <% if flash[:message] %>
+          <%= flash[:message] %>
+        <% end %>
 
         <%= yield %>
 

@@ -9,10 +9,22 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    binding.pry
     @user = User.create(params[:user])
 
-    redirect "/#{@user.username.slug}"
+    if @user
+      session[:user_id] = @user.id
+      flash[:message] = "Welcome, #{@user.first_name}!"
+      redirect "/users/#{@user.username.slug}"
+    else
+      flash[:message] = "Unsuccessful Login. Please Sign-Up or Log-In."
+      redirect "/"
+    end
+  end
+
+  get '/users/:slug' do
+    @user = current_user
+
+    erb :'users/show'
   end
 
 end
