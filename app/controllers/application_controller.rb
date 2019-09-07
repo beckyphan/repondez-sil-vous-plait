@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def authorized_to_edit?(guest)
-      current_user == guest.user 
+      current_user == guest.user
     end
   end
 

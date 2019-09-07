@@ -1,2 +1,10 @@
 class UsersController < ApplicationController
-end 
+
+  get '/login' do
+  end
+
+  post '/login' do
+    
+  end
+
+end
