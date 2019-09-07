@@ -17,7 +17,9 @@
     <nav class="topnav">
         <a href = '/'>Home</a>
         <% if logged_in? %>
-          <a href='/:user/guests'>My Guests</a>
+          <a href='/guests'>Guest List</a>
+          <a href='/users/<%= session_slug %>/edit'>My RSVP</a>
+          <a href='/<%= session_slug %>/guests'>My Guests</a>
           <a href='/logout'>Log-Out</a>
         <% else %>
           <a href='/login'>Log-In</a>
@@ -25,7 +27,7 @@
         <% end %>
     </nav>
     <div class="wrapper">
-      
+
         <% if flash[:message] %>
           <%= flash[:message] %>
         <% end %>

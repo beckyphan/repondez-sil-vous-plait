@@ -6,7 +6,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :username
       t.string :email
       t.string :password_digest
-      t.integer :guest_limit
+      t.string :rsvp, default: "Yes"
+      t.integer :guest_limit, default: 1
     end
   end
 end

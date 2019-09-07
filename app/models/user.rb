@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
-  has_many :guests
   has_secure_password
-  validates :first_name, :last_name, :username, :email, :password, presence: true
-  validates :username, :email, uniqueness: true
+  has_many :guests
+
+  validates :first_name, :last_name, :username, :email, :password, presence: true, on: :create
+  validates :username, uniqueness: true, on: :create
 
   extend Concerns::ClassMethods
   include Concerns::InstanceMethods

@@ -5,6 +5,7 @@ M:
     Username
     Email Address
     Password
+    RSVP
     Guest Limit
     has_many guests
 
@@ -15,7 +16,7 @@ M:
     has_one meal
 
   Meal
-    Meal Type 
+    Meal Type
     Notes (ie allergies, food restrictions, etc.)
     has_many guests
 
