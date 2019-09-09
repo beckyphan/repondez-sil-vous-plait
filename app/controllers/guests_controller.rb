@@ -17,11 +17,24 @@ class GuestsController < ApplicationController
   end
 
   get '/guests/edit' do
-    binding.pry
+    protected_page
+    @plus_ones = current_user.guests[1..-1]
+    erb :'/guests/edit'
   end
 
   get '/users/:slug/guests' do
+    protected_page
     erb :'guests/show'
+  end
+
+  patch '/users/:slug/guests' do
+    params[:guest].each do |guest|
+      @updated = Guest.update(guest[:id], guest[:attributes])
+      @updated.meal.update(guest[:meal])
+    end
+
+    flash[:message] = "Your guest(s) has been updated!"
+    redirect "/users/#{session_slug}/guests"
   end
 
   post '/users/:slug/guests' do
@@ -31,7 +44,7 @@ class GuestsController < ApplicationController
       plus_one.meal = Meal.create(params[:meal])
 
       flash[:message] = "Your guest has been added!"
-      redirect "/#{session_slug}/guests"
+      redirect "users/#{session_slug}/guests"
     else
       flash[:message] = "You are not alloted another guest."
       redirect '/guests/edit'

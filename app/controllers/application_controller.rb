@@ -27,8 +27,8 @@ class ApplicationController < Sinatra::Base
       @first_guest ||=current_user.guests.first
     end
 
-    def selected_meal(meal_name)
-      if first_guest != nil && first_guest.meal != nil && first_guest.meal.menu_item == meal_name
+    def check_meal(meal_name, my_guest)
+      if my_guest != nil && my_guest.meal != nil && my_guest.meal.menu_item == meal_name
         "checked"
       else
         "unchecked"
