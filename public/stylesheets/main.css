@@ -19,6 +19,7 @@
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
+    scroll-margin: 25px; 
   }
 
   .topnav {
@@ -59,6 +60,7 @@
     max-width: 960px;
     padding: 2.25%; /* 18px / 800px */
     width: 50%;
+    height: 80%
   }
 
   .flash {
@@ -111,12 +113,11 @@
   }
 
   footer.branding {
-    width: 90%;
+    width: 50%;
     position: fixed;
     bottom: 0;
     border-top: 2px solid #ccc;
-    margin:0 auto;
-    padding: 10px 15px 10px 15px;
+    margin: 20px auto;
   }
 }
 

@@ -2,32 +2,28 @@
 <br>
 <div class='form plusone'>
   <form action="/users/<%= session_slug %>/guests" method="POST">
-  <input type="hidden" id="hidden" name="_method" value="PATCH">
-
+    <input type="hidden" id="hidden" name="_method" value="PATCH">
     <% @plus_ones.each do |guest| %>
       <h2><%= guest.first_name %> <%= guest.last_name %></h2>
-      <input type="hidden" id="hidden" name="guest[][id]" value="<%= guest.id %>">
-      Edit Guest Name:
-      <input type="text" id="first_name" name="guest[][attributes][first_name]" value="<%= guest.first_name %>">
-      <input type="text" id="last_name" name="guest[][attributes][last_name]" value="<%= guest.last_name %>">
+        Edit Guest Name:
+        <input type="text" id="first_name" name="[guest][<%= guest.id %>][attributes][first_name]" value="<%= guest.first_name %>">
+        <input type="text" id="last_name" name="[guest][<%= guest.id %>][attributes][last_name]" value="<%= guest.last_name %>">
 
-      <br><br>
+        <br><br>
 
-      <label for="meal">Meal: </label><br>
-      <input type="radio" id="rsvp" name="guest[][meal][menu_item]" value="Filet Mignon with Garlic Herb Butter" <%= check_meal("Filet Mignon with Garlic Herb Butter", guest) %>> Filet Mignon with Garlic Herb Butter</input><br>
-      <input type="radio" id="rsvp" name="guest[][meal][menu_item]" value="Crispy Skin Salmon" <%= check_meal("Crispy Skin Salmon", guest) %>> Crispy Skin Salmon</input><br>
-      <input type="radio" id="rsvp" name="guest[][meal][menu_item]" value="Mushroom & Chervil Risotto" <%= check_meal("Mushroom & Chervil Risotto", guest) %>> Mushroom & Chervil Risotto (vegetarian)</input><br>
-      <input type="radio" id="rsvp" name="guest[][meal][menu_item]" value="Tofu Banh Mi Sliders" <%= check_meal("Tofu Banh Mi Sliders", guest) %>> Tofu Banh Mi Sliders (vegan)</input><br>
+        <label for="meal">Meal: </label><br>
+        <input type="radio" id="meal" name="[guest][<%= guest.id %>][meal][menu_item]" value="Filet Mignon with Garlic Herb Butter" <%= check_meal("Filet Mignon with Garlic Herb Butter", guest) %>> Filet Mignon with Garlic Herb Butter</input><br>
+        <input type="radio" id="meal" name="[guest][<%= guest.id %>][meal][menu_item]" value="Crispy Skin Salmon" <%= check_meal("Crispy Skin Salmon", guest) %>> Crispy Skin Salmon</input><br>
+        <input type="radio" id="meal" name="[guest][<%= guest.id %>][meal][menu_item]" value="Mushroom & Chervil Risotto" <%= check_meal("Mushroom & Chervil Risotto", guest) %>> Mushroom & Chervil Risotto (vegetarian)</input><br>
+        <input type="radio" id="meal" name="[guest][<%= guest.id %>][meal][menu_item]" value="Tofu Banh Mi Sliders" <%= check_meal("Tofu Banh Mi Sliders", guest) %>> Tofu Banh Mi Sliders (vegan)</input><br>
 
-      <br><br>
+        <br>
 
-      <label for="notes">Food Notes: </label>
-      <input type="text" id="notes" name="guest[][meal][notes]" value="<%= guest.meal.notes %>">
-
+        <label for="notes">Food Notes: </label>
+        <input type="text" id="notes" name="[guest][<%= guest.id %>][meal][notes]" value="<%= guest.meal.notes %>">
+        <br><br>
+      <br>
     <% end %>
-      <br><br>
-
-
     <input type="submit" value="Save">
   </form>
 </div>

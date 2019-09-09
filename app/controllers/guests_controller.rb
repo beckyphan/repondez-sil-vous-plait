@@ -28,9 +28,10 @@ class GuestsController < ApplicationController
   end
 
   patch '/users/:slug/guests' do
+
     params[:guest].each do |guest|
-      @updated = Guest.update(guest[:id], guest[:attributes])
-      @updated.meal.update(guest[:meal])
+      @updated = Guest.update(guest[0], guest[1][:attributes])
+      @updated.meal.update(guest[1][:meal])
     end
 
     flash[:message] = "Your guest(s) has been updated!"
