@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def selected_meal(meal_name)
-      if first_guest.meal.menu_item == meal_name
+      if first_guest != nil && first_guest.meal != nil && first_guest.meal.menu_item == meal_name
         "checked"
       else
         "unchecked"
@@ -48,7 +48,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def attending?
-      current_user.rsvp == "Yes" ? "Yes" : "No"
+      current_user.rsvp == "Yes" ? true : false
     end
 
     def authorized_to_edit?(guest)

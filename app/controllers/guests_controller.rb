@@ -2,42 +2,31 @@ class GuestsController < ApplicationController
 
   get '/guests' do
     protected_page
+    erb :'index'
+  end
+
+  get '/guests/edit' do
+    protected_page
+    erb :'guests/edit'
+  end
+
+  get '/:slug/guests' do
     erb :'guests/show'
   end
 
-  patch '/guests' do
-    binding.pry
-
+  delete '/guests' do
     @user = current_user
-    @user.update(params[:user])
+    @user.update(rsvp: "No")
 
-    if attending?
-      first_guest.tap do |guest|
-        guest.update(params[:user])
-        if guest.meal == nil
-          guest.meal = Meal.create(params[:meal])
-        else
-          guest.meal.update(params[:meal])
-        end 
-      end
-    else
-      @user.tap do |u|
-        u.update(rsvp: "Yes")
-        u.guests << Guest.create(params[:user])
-      end
-
-      first_guest.tap do |guest|
-        guest.meal = Meal.create(params[:meal])
-      end
+    @user.guests.each do |guest|
+      if guest.meal != nil
+        guest.meal.destroy
+      end 
     end
 
-    erb :'guests/show'
-
-  end
-
-  delete 'guests' do
-    @user = current_user
     @user.guests.destroy_all
+
+    flash[:message] = "You have RSVP'ed No & have been removed from Guest List"
 
     redirect '/guests'
   end

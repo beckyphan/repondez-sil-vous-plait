@@ -18,16 +18,6 @@ class UsersController < ApplicationController
     end
   end
 
-  patch '/users' do
-    binding.pry
-    if rsvp_value == "checked"
-      redirect "/guests/meals"
-    else
-      flash[:message] = "You have RSVP'ed No."
-      redirect "/users/guests/edit"
-    end
-  end
-
   get '/login' do
     erb :'users/login'
   end
@@ -45,7 +35,7 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/users/:slug/edit' do
+  get '/:slug/edit' do
     protected_page
 
     @user = current_user
@@ -53,10 +43,39 @@ class UsersController < ApplicationController
     erb :'users/edit'
   end
 
-  get '/users/:slug' do
-    protected_page
+  patch '/:slug/edit' do
+    @user = current_user
+    @user.update(params[:user])
 
-    erb :'users/show'
+    if first_guest == nil
+      @user.guests << Guest.create(first_name: params[:user][:first_name], last_name: params[:user][:last_name])
+    end
+
+    if attending?
+      first_guest.tap do |guest|
+        guest.update(first_name: params[:user][:first_name], last_name: params[:user][:last_name])
+
+        if guest.meal == nil
+          guest.meal = Meal.create(params[:meal])
+        else
+          guest.meal.update(params[:meal])
+        end
+      end
+
+    else
+      first_guest.tap do |guest|
+        guest.meal = Meal.create(params[:meal])
+      end
+    end
+
+    if first_guest.meal.menu_item == nil
+      flash[:message] = "Please select a meal & confirm RSVP."
+    else
+      flash[:message] = "Your response has been saved!"
+    end
+
+    redirect "/#{session_slug}/edit"
+
   end
 
   get '/logout' do

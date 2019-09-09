@@ -1,7 +1,7 @@
 <h1>My RSVP</h1>
 <br>
 <div class='form signup'>
-  <form action="/guests" method="POST">
+  <form action="/<%= session_slug %>/edit" method="POST">
     <input type="hidden" id="hidden" name="_method" value="PATCH">
     <label for="first_name">First Name: </label>
     <input type="text" id="first_name" name="user[first_name]" value="<%= @user.first_name %>">
@@ -12,23 +12,29 @@
     <input type="text" id="last_name" name="user[last_name]" value="<%= @user.last_name %>">
 
     <br><br>
-
     <% if attending? %>
       <label for="meal">Meal: </label><br>
-      <input type="radio" id="rsvp" name="meal[menu_item]" value="Filet Mignon with Garlic Herb Butter" checked="<%= selected_meal("Filet Mignon with Garlic Herb Butter") %>"> Filet Mignon with Garlic Herb Butter</input><br>
-      <input type="radio" id="rsvp" name="meal[menu_item]" value="Crispy Skin Salmon" checked="<%= selected_meal("Crispy Skin Salmon") %>"> Crispy Skin Salmon</input><br>
-      <input type="radio" id="rsvp" name="meal[menu_item]" value="Mushroom & Chervil Risotto" checked="<%= selected_meal("Mushroom & Chervil Risotto") %>"> Mushroom & Chervil Risotto (vegetarian)</input><br>
-      <input type="radio" id="rsvp" name="meal[menu_item]" value="Tofu Banh Mi Sliders" checked="<%= selected_meal("Tofu Banh Mi Sliders") %>"> Tofu Banh Mi Sliders (vegan)</input><br>
+      <input type="radio" id="rsvp" name="meal[menu_item]" value="Filet Mignon with Garlic Herb Butter" <%= selected_meal("Filet Mignon with Garlic Herb Butter") %>> Filet Mignon with Garlic Herb Butter</input><br>
+      <input type="radio" id="rsvp" name="meal[menu_item]" value="Crispy Skin Salmon" <%= selected_meal("Crispy Skin Salmon") %>> Crispy Skin Salmon</input><br>
+      <input type="radio" id="rsvp" name="meal[menu_item]" value="Mushroom & Chervil Risotto" <%= selected_meal("Mushroom & Chervil Risotto") %>> Mushroom & Chervil Risotto (vegetarian)</input><br>
+      <input type="radio" id="rsvp" name="meal[menu_item]" value="Tofu Banh Mi Sliders" <%= selected_meal("Tofu Banh Mi Sliders") %>> Tofu Banh Mi Sliders (vegan)</input><br>
 
       <br><br>
 
       <label for="notes">Notes: </label>
       <input type="text" id="notes" name="meal[notes]">
-    <% end %>
 
-    <br><br>
-    <label>Confirm RSVP: </label><br>
-      <input type="submit" value="Yes">
+      <br><br>
+
+      <label>Confirm RSVP: </label><br>
+    <% else %>
+      <br>
+      <h2>You have RSVP'ed 'No'</h2>
+      <br>
+      <label>Change RSVP: </label><br>
+    <% end %>
+    <input type="hidden" id='hidden' name="user[rsvp]" value="Yes">
+    <input type="submit" value="Yes">
   </form>
   <form action='/guests' method="POST">
     <input type="hidden" id="hidden" name="_method" value="DELETE">
