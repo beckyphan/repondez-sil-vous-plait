@@ -13,7 +13,9 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: lightblue;
+    background-image: url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80");
+    background-repeat: no-repeat;
+    background-position: center center;
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
@@ -21,7 +23,8 @@
 
   .topnav {
     width: 100%;
-    background-color: rgb(102, 153, 255);
+    background-color: white;
+    opacity: 0.5;
     display: flex;
     justify-content: space-around;
     overflow: hidden;
@@ -29,7 +32,7 @@
 
   .topnav a {
     width: auto;
-    color: #f2f2f2;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -48,13 +51,21 @@
 
   .wrapper {
     background: #fff;
+    opacity: 0.9;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
     margin: 16px auto;
     max-width: 960px;
     padding: 2.25%; /* 18px / 800px */
-    width: 85%;
+    width: 50%;
+  }
+
+  .flash {
+    width: 95%;
+    margin: 0 auto;
+    background-color: #FFD9F2;
+    opacity: 0.9;
   }
 
   h1 {
@@ -99,14 +110,13 @@
     font-size: 14px;
   }
 
-  .branding {
-    clear: both;
-  }
-
   footer.branding {
+    width: 90%;
+    position: fixed;
+    bottom: 0;
     border-top: 2px solid #ccc;
-    margin-top: 20px;
-    padding-top: 20px;
+    margin:0 auto;
+    padding: 10px 15px 10px 15px;
   }
 }
 

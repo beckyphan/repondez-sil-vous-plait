@@ -28,16 +28,18 @@
     </nav>
     <div class="wrapper">
 
-        <% if flash[:message] %>
-          <%= flash[:message] %>
-          <br><br>
-        <% end %>
+        <div class="flash">
+          <center>
+          <% if flash[:message] %>
+            <br>
+            <%= flash[:message] %>
+            <br><br>
+          <% end %>
+          </center>
+        </div>
 
         <%= yield %>
 
-      <footer class="branding">
-        <small>&copy; 2019 <strong>Répondez S'il Vous Plaît</strong> by <strong>Becky Phan</strong></small>
-      </footer>
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -46,4 +48,7 @@
       <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
     <![endif]-->
   </body>
+  <footer class="branding">
+    <small>&copy; 2019 <strong>Répondez S'il Vous Plaît</strong> by <strong>Becky Phan</strong></small>
+  </footer>
 </html>

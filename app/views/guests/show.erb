@@ -12,8 +12,10 @@
 
   <br>
 
-<% if current_user.guests.count < current_user.guest_limit %>
-  <a href='/guests/new'><button type="button"> Add a 'Plus One' </button></a>
-<% elsif current_user.guest_limit > 1 %>
-  <a href='/guests/edit'><button type="button"> Edit my Guests </button></a>
-<% end %>
+<center>
+  <% if current_user.guests.count < current_user.guest_limit %>
+    <a href='/guests/new'><button type="button"> Add a 'Plus One' </button></a>
+  <% elsif current_user.guest_limit > 1 %>
+    <a href='/guests/edit'><button type="button"> Edit my Guests </button></a>
+  <% end %>
+</center>

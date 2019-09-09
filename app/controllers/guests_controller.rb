@@ -11,9 +11,13 @@ class GuestsController < ApplicationController
     if current_user.guests.count < current_user.guest_limit
       erb :'guests/new'
     else
-      flash[:message] = "You are not alloted another guest."
+      flash[:message] = "You are not allotted another guest."
       redirect '/guests/edit'
     end
+  end
+
+  get '/guests/edit' do
+    binding.pry
   end
 
   get '/users/:slug/guests' do

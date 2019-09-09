@@ -1,4 +1,4 @@
-<h1>My RSVP</h1>
+<h2>My RSVP</h2>
 <br>
 <div class='form myrsvp'>
   <form action="/users/<%= session_slug %>/edit" method="POST">
@@ -26,18 +26,18 @@
 
       <br><br>
 
-      <label>Confirm RSVP: </label><br>
+      <center><h3>Confirm RSVP</h3></center>
     <% else %>
       <br>
-      <h2>You have RSVP'ed 'No'</h2>
+      <center><h2>You have RSVP'ed 'No'</h2>
       <br>
-      <label>Change RSVP: </label><br>
+      <h3>Change RSVP</h3></center>
     <% end %>
     <input type="hidden" id='hidden' name="user[rsvp]" value="Yes">
-    <input type="submit" value="Yes">
+    <center><input type="submit" value="Yes"></center>
   </form>
   <form action='/guests' method="POST">
     <input type="hidden" id="hidden" name="_method" value="DELETE">
-    <input type="submit" value="No">
+    <center><input type="submit" value="No"></center>
   </form>
 </div>
