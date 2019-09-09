@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/:slug/edit' do
+  get '/users/:slug/edit' do
     protected_page
 
     @user = current_user
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     erb :'users/edit'
   end
 
-  patch '/:slug/edit' do
+  patch '/users/:slug/edit' do
     @user = current_user
     @user.update(params[:user])
 

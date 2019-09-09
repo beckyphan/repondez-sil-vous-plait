@@ -16,11 +16,11 @@ class GuestsController < ApplicationController
     end
   end
 
-  get '/:slug/guests' do
+  get '/users/:slug/guests' do
     erb :'guests/show'
   end
 
-  post '/:slug/guests' do
+  post '/users/:slug/guests' do
     if current_user.guests.count < current_user.guest_limit
       plus_one = Guest.create(params[:guest])
       current_user.guests << plus_one

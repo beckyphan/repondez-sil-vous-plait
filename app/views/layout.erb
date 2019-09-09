@@ -18,8 +18,8 @@
         <a href = '/'>Home</a>
         <% if logged_in? %>
           <a href='/guests'>Guest List</a>
-          <a href='/<%= session_slug %>/edit'>My RSVP</a>
-          <a href='/<%= session_slug %>/guests'>My Guests</a>
+          <a href='/users/<%= session_slug %>/edit'>My RSVP</a>
+          <a href='/users/<%= session_slug %>/guests'>My Guests</a>
           <a href='/logout'>Log-Out</a>
         <% else %>
           <a href='/login'>Log-In</a>

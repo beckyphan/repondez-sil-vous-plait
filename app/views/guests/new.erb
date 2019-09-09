@@ -1,7 +1,7 @@
 <h1>Add a Guest</h1>
 <br>
 <div class='form plusone'>
-  <form action="/<%= session_slug %>/guests" method="POST">
+  <form action="/users/<%= session_slug %>/guests" method="POST">
     <label for="first_name">First Name: </label>
     <input type="text" id="first_name" name="guest[first_name]">
 
