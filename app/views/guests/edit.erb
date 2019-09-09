@@ -5,7 +5,7 @@
     <input type="hidden" id="hidden" name="_method" value="PATCH">
     <% @plus_ones.each do |guest| %>
       <h2><%= guest.first_name %> <%= guest.last_name %></h2>
-        Edit Guest Name:
+        Edit Name:
         <input type="text" id="first_name" name="[guest][<%= guest.id %>][attributes][first_name]" value="<%= guest.first_name %>">
         <input type="text" id="last_name" name="[guest][<%= guest.id %>][attributes][last_name]" value="<%= guest.last_name %>">
 

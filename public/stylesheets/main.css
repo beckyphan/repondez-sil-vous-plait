@@ -19,7 +19,7 @@
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
-    scroll-margin: 25px; 
+    scroll-margin: 50px;
   }
 
   .topnav {
@@ -60,14 +60,14 @@
     max-width: 960px;
     padding: 2.25%; /* 18px / 800px */
     width: 50%;
-    height: 80%
+    height: auto;
   }
 
   .flash {
     width: 95%;
     margin: 0 auto;
     background-color: #FFD9F2;
-    opacity: 0.9;
+    opacity: 0.85;
   }
 
   h1 {
@@ -92,7 +92,7 @@
   }
 
   .main {
-    overflow: hidden;
+    overflow: scroll;
   }
 
   .content {
@@ -113,11 +113,11 @@
   }
 
   footer.branding {
-    width: 50%;
+    width: 95%;
     position: fixed;
     bottom: 0;
     border-top: 2px solid #ccc;
-    margin: 20px auto;
+    margin: 5px auto;
   }
 }
 
