@@ -1,1 +1,19 @@
-"show me & my guests"
+<h2>My Guests</h2>
+
+  <ul>
+    <% current_user.guests.each do |guest| %>
+    <li><strong><%= guest.first_name %> <%= guest.last_name %></strong>: <%= guest.meal.menu_item %>
+      <% if !guest.meal.notes.empty? %>
+        (<%= guest.meal.notes %>)
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+
+  <br>
+
+<% if current_user.guests.count < current_user.guest_limit %>
+  <a href='/guests/new'><button type="button"> Add a 'Plus One' </button></a>
+<% elsif current_user.guest_limit > 1 %>
+  <a href='/guests/edit'><button type="button"> Edit my Guests </button></a>
+<% end %>

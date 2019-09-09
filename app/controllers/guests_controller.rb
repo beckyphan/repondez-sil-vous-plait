@@ -5,13 +5,33 @@ class GuestsController < ApplicationController
     erb :'index'
   end
 
-  get '/guests/edit' do
+  get '/guests/new' do
     protected_page
-    erb :'guests/edit'
+
+    if current_user.guests.count < current_user.guest_limit
+      erb :'guests/new'
+    else
+      flash[:message] = "You are not alloted another guest."
+      redirect '/guests/edit'
+    end
   end
 
   get '/:slug/guests' do
     erb :'guests/show'
+  end
+
+  post '/:slug/guests' do
+    if current_user.guests.count < current_user.guest_limit
+      plus_one = Guest.create(params[:guest])
+      current_user.guests << plus_one
+      plus_one.meal = Meal.create(params[:meal])
+
+      flash[:message] = "Your guest has been added!"
+      redirect "/#{session_slug}/guests"
+    else
+      flash[:message] = "You are not alloted another guest."
+      redirect '/guests/edit'
+    end
   end
 
   delete '/guests' do
@@ -21,7 +41,7 @@ class GuestsController < ApplicationController
     @user.guests.each do |guest|
       if guest.meal != nil
         guest.meal.destroy
-      end 
+      end
     end
 
     @user.guests.destroy_all

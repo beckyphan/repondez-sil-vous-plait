@@ -1,1 +1,6 @@
-"show all guests"
+<h2>All Attendees</h2>
+  <ul>
+    <% Guest.all.each do |guest| %>
+    <li><%= guest.first_name %> <%= guest.last_name %></li>
+    <% end %>
+  </ul>

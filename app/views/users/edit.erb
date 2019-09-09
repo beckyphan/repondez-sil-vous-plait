@@ -1,6 +1,6 @@
 <h1>My RSVP</h1>
 <br>
-<div class='form signup'>
+<div class='form myrsvp'>
   <form action="/<%= session_slug %>/edit" method="POST">
     <input type="hidden" id="hidden" name="_method" value="PATCH">
     <label for="first_name">First Name: </label>
@@ -21,8 +21,8 @@
 
       <br><br>
 
-      <label for="notes">Notes: </label>
-      <input type="text" id="notes" name="meal[notes]">
+      <label for="notes">Food Notes: </label>
+      <input type="text" id="notes" name="meal[notes]" value="<%= current_user.guests.first.meal.notes %>">
 
       <br><br>
 

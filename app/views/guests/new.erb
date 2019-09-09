@@ -1,1 +1,28 @@
-"add guests"
+<h1>Add a Guest</h1>
+<br>
+<div class='form plusone'>
+  <form action="/<%= session_slug %>/guests" method="POST">
+    <label for="first_name">First Name: </label>
+    <input type="text" id="first_name" name="guest[first_name]">
+
+    <br><br>
+
+    <label for="last_name">Last Name: </label>
+    <input type="text" id="last_name" name="guest[last_name]">
+
+    <br><br>
+    <label for="meal">Meal: </label><br>
+    <input type="radio" id="rsvp" name="meal[menu_item]" value="Filet Mignon with Garlic Herb Butter"> Filet Mignon with Garlic Herb Butter</input><br>
+    <input type="radio" id="rsvp" name="meal[menu_item]" value="Crispy Skin Salmon"> Crispy Skin Salmon</input><br>
+    <input type="radio" id="rsvp" name="meal[menu_item]" value="Mushroom & Chervil Risotto"> Mushroom & Chervil Risotto (vegetarian)</input><br>
+    <input type="radio" id="rsvp" name="meal[menu_item]" value="Tofu Banh Mi Sliders"> Tofu Banh Mi Sliders (vegan)</input><br>
+
+    <br><br>
+
+    <label for="notes">Food Notes: </label>
+    <input type="text" id="notes" name="meal[notes]" value="<%= current_user.guests.first.meal.notes %>">
+
+    <br><br>
+    <input type="submit" value="Save">
+  </form>
+</div>

@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       flash[:message] = "Welcome, #{current_user.first_name}!"
-      redirect "/users/#{@user.slug}"
+      redirect "/#{session_slug}/guests"
     else
       flash[:message] = "Unsuccessful Login. Please try again or Sign-Up."
       redirect "/"
@@ -70,11 +70,11 @@ class UsersController < ApplicationController
 
     if first_guest.meal.menu_item == nil
       flash[:message] = "Please select a meal & confirm RSVP."
+      redirect "/#{session_slug}/edit"
     else
       flash[:message] = "Your response has been saved!"
+      redirect "/#{session_slug}/guests"
     end
-
-    redirect "/#{session_slug}/edit"
 
   end
 
