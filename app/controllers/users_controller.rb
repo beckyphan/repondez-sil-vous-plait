@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   end
 
   post '/users' do
-    @user = User.create(params[:user])
+    @user = User.new(params[:user])
 
-    if @user
+    if @user.save
       session[:user_id] = @user.id
       @user.guests << Guest.create(first_name: params[:user][:first_name], last_name: params[:user][:last_name])
       flash[:message] = <<-FLASH
