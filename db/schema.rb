@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20190907173930) do
     t.string  "email"
     t.string  "password_digest"
     t.string  "rsvp",            default: "Yes"
-    t.integer "guest_limit",     default: 2
+    t.integer "guest_limit",     default: 3
   end
 
 end
