@@ -25,6 +25,12 @@ class UsersController < ApplicationController
 
   delete '/users' do
     delete_user = User.find_by(id: current_user.id)
+    delete_user.guests.each do |guest|
+      guest.meal.destroy
+    end
+
+    delete_user.guests.destroy_all
+
     delete_user.destroy
 
     flash[:message] = "Your account has been deleted."
