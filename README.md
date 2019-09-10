@@ -30,6 +30,25 @@ This application allows guests to submit data, including name, meal choice for a
 Users can view all attendees, but may not alter anyone on the guest list other than their own plus-one's.
 Ideally, guests would not overlap by bringing the same plus-one's and plus-one's need not make an account as they are accounted for by their host/user.
 
+database schema is as follows:
+"users"
+  t.string  "first_name"
+  t.string  "last_name"
+  t.string  "username"
+  t.string  "email"
+  t.string  "password_digest"
+  t.string  "rsvp",            default: "Yes"
+  t.integer "guest_limit",     default: 3
+
+"guests"
+  t.string  "first_name"
+  t.string  "last_name"
+  t.integer "user_id"
+
+"meals"
+  t.string  "menu_item"
+  t.string  "notes"
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
