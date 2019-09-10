@@ -1,22 +1,30 @@
-<h2>My Guests & I</h2>
+<% if attending? %>
 
-  <ul>
-    <% current_user.guests.each do |guest| %>
-    <li><strong><%= guest.first_name %> <%= guest.last_name %></strong>: <%= guest.meal.menu_item %>
-      <% if !guest.meal.notes.empty? %>
-        (<%= guest.meal.notes %>)
+  <h2>My Guests & I</h2>
+
+    <ul>
+      <% current_user.guests.each do |guest| %>
+      <li><strong><%= guest.first_name %> <%= guest.last_name %></strong>: <%= guest.meal.menu_item %>
+        <% if !guest.meal.notes.empty? %>
+          (<%= guest.meal.notes %>)
+        <% end %>
+      </li>
       <% end %>
-    </li>
-    <% end %>
-  </ul>
+    </ul>
 
+    <br>
+
+<% else %>
+  <center><h3>We're sad you can't make it.</h3></center>
   <br>
+<% end %>
 
 <center>
-  <% if current_user.guest_limit > 1 %>
+  <a href='/users/<%= session_slug %>/edit'><button type="button"> Edit my RSVP </button></a>
+  <% if current_user.guests.count > 1 %>
     <a href='/guests/edit'><button type="button"> Edit my Guests </button></a>
-    <% if current_user.guests.count < current_user.guest_limit %>
-      <a href='/guests/new'><button type="button"> Add a 'Plus One' </button></a>
-    <% end %>
+  <% end %>
+  <% if current_user.guests.count < current_user.guest_limit && attending? %>
+    <a href='/guests/new'><button type="button"> Add a 'Plus One' </button></a>
   <% end %>
 </center>
