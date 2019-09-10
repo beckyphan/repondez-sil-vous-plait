@@ -4,7 +4,7 @@
   <form action="/users/<%= session_slug %>/guests" method="POST">
     <input type="hidden" id="hidden" name="_method" value="PATCH">
     <% @plus_ones.each do |guest| %>
-      <h2><%= guest.first_name %> <%= guest.last_name %></h2>
+      <h2><%= guest.first_name %> <%= guest.last_name %> <a href="/users/<%= session_slug %>/guests/<%= guest.id %>"> <button type="button"> Delete Guest </button></a></h2> 
         Edit Name:
         <input type="text" id="first_name" name="[guest][<%= guest.id %>][attributes][first_name]" value="<%= guest.first_name %>">
         <input type="text" id="last_name" name="[guest][<%= guest.id %>][attributes][last_name]" value="<%= guest.last_name %>">
@@ -20,8 +20,8 @@
         <br>
 
         <label for="notes">Food Notes: </label>
-        <input type="text" id="notes" name="[guest][<%= guest.id %>][meal][notes]" value="<%= guest.meal.notes %>">
-        <br><br>
+        <input type="text" id="notes" name="[guest][<%= guest.id %>][meal][notes]" value="<%= guest.meal.notes %>"> <br>
+        <br>
       <br>
     <% end %>
     <input type="submit" value="Save">

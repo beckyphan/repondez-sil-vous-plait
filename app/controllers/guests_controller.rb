@@ -52,6 +52,26 @@ class GuestsController < ApplicationController
     end
   end
 
+  get '/users/:slug/guests/:id' do
+    protected_page
+
+    if Guest.find_by(id: params[:id])
+      @delete_guest = Guest.find_by(id: params[:id])
+      erb :'guests/delete'
+    else
+      redirect '/guests/edit'
+    end
+  end
+
+
+  delete '/users/:slug/guests' do
+    delete_guest = Guest.find_by(id: params[:guest_id])
+    delete_guest.destroy
+
+    flash[:message] = "Your guest has been deleted!"
+    redirect "users/#{session_slug}/guests"
+  end
+
   delete '/guests' do
     @user = current_user
     @user.update(rsvp: "No")

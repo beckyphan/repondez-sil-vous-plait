@@ -1,0 +1,9 @@
+<h3>Are you sure you want to delete <%= @delete_guest.first_name %> <%= @delete_guest.last_name %>?</h3>
+  <form action="/users/<%= session_slug %>/guests" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+    
+    <input type="hidden" id="hidden" name="guest_id" value="<%= @delete_guest.id %>">
+    <br>
+    <center><input type="submit" value="Yes"></center>
+  </form>
+    <center><a href='/guests/edit'><button type="button"> Cancel </button></a></center>

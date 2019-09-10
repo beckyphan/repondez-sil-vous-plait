@@ -41,6 +41,12 @@ class ApplicationController < Sinatra::Base
 
     def protected_page
       if logged_in?
+      elsif logged_in? && params[:slug] != nil
+        if params[:slug] == session_slug
+        else
+          flash[:message] = "You don't have access to that page."
+          redirect '/'
+        end
       else
         flash[:message] = "You must be logged in to access that page."
         redirect '/'
