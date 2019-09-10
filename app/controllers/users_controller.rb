@@ -11,8 +11,9 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       @user.guests << Guest.create(first_name: params[:user][:first_name], last_name: params[:user][:last_name])
       flash[:message] = <<-FLASH
-      "Welcome, #{current_user.first_name}!"
-      "Please select a meal and/or confirm your RSVP.""
+        Welcome, #{current_user.first_name}!
+
+        Please select a meal and/or confirm your RSVP.
       FLASH
 
       redirect "users/#{session_slug}/edit"
@@ -20,6 +21,14 @@ class UsersController < ApplicationController
       flash[:message] = "Unsuccessful Sign-Up. Please Try Again."
       redirect "/"
     end
+  end
+
+  delete '/users' do
+    delete_user = User.find_by(id: current_user.id)
+    delete_user.destroy
+
+    flash[:message] = "Your account has been deleted."
+    redirect '/'
   end
 
   get '/login' do
@@ -37,6 +46,12 @@ class UsersController < ApplicationController
       flash[:message] = "Unsuccessful Login. Please try again or Sign-Up."
       redirect "/"
     end
+  end
+
+  get '/users/:slug' do
+    protected_page
+
+    erb :'users/show'
   end
 
   get '/users/:slug/edit' do
