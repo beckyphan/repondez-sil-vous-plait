@@ -9,4 +9,3 @@ use Rack::MethodOverride
 run ApplicationController
 use UsersController
 use GuestsController
-use MealsController

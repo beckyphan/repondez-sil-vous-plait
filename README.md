@@ -2,7 +2,7 @@
 
 repondez-sil-vous-plait is a sinatra application that allows Users to RSVP for a wedding or other event.
 
-Users must sign-up to access most of the site. Signing-up requires input of a First Name, Last Name, unique username, unique email address, and a password.
+Users must sign-up to access most of the site. Signing-up requires input of a First Name, Last Name, unique username, email address, and a password.
 By default, users currently have a guest limit of 3, including themselves (aka User + 2 Plus One's).
 
 A user has_many guests, and each guest has_one meal.
