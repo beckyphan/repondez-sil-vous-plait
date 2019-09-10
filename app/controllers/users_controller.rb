@@ -10,8 +10,12 @@ class UsersController < ApplicationController
     if @user
       session[:user_id] = @user.id
       @user.guests << Guest.create(first_name: params[:user][:first_name], last_name: params[:user][:last_name])
-      flash[:message] = "Welcome, #{current_user.first_name}!"
-      redirect "/guests/edit"
+      flash[:message] = <<-FLASH
+      "Welcome, #{current_user.first_name}!"
+      "Please select a meal and/or confirm your RSVP.""
+      FLASH
+
+      redirect "users/#{session_slug}/edit"
     else
       flash[:message] = "Unsuccessful Sign-Up. Please Try Again."
       redirect "/"
@@ -70,10 +74,10 @@ class UsersController < ApplicationController
 
     if first_guest.meal.menu_item == nil
       flash[:message] = "Please select a meal & confirm RSVP."
-      redirect "users/#{session_slug}/edit"
+      redirect "/users/#{session_slug}/edit"
     else
       flash[:message] = "Your response has been saved!"
-      redirect "users/#{session_slug}/guests"
+      redirect "/users/#{session_slug}/guests"
     end
 
   end
