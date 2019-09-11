@@ -30,10 +30,10 @@ class GuestsController < ApplicationController
   patch '/users/:slug/guests' do
 
     params[:guest].each do |guest|
-      # @guest.user == current_user ; alt check if user matches
+
       @guest = Guest.find_by(id: guest[0])
 
-      if current_user.guests.include?(@guest)
+      if @guest.user == current_user
         @guest.update(guest[1][:attributes])
         @guest.meal.update(guest[1][:meal])
       else
@@ -73,8 +73,6 @@ class GuestsController < ApplicationController
 
 
   delete '/users/:slug/guests' do
-    #protect who gets to delete who
-
     @guest = Guest.find_by(id: params[:guest_id])
     if @guest.user == current_user
       @guest.destroy
@@ -83,7 +81,7 @@ class GuestsController < ApplicationController
     else
       flash[:message] = "You are not allowed to delete that guest."
       redirect '/guests/edit'
-    end 
+    end
   end
 
   delete '/guests' do

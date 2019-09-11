@@ -24,14 +24,14 @@ class UsersController < ApplicationController
   end
 
   delete '/users' do
-    delete_user = User.find_by(id: current_user.id)
-    delete_user.guests.each do |guest|
+    
+    current_user.guests.each do |guest|
       guest.meal.destroy
     end
 
-    delete_user.guests.destroy_all
+    current_user.guests.destroy_all
 
-    delete_user.destroy
+    current_user.destroy
 
     flash[:message] = "Your account has been deleted."
     redirect '/'
@@ -69,11 +69,10 @@ class UsersController < ApplicationController
   end
 
   patch '/users/:slug/edit' do
-    @user = current_user
-    @user.update(params[:user])
+    current_user.update(params[:user])
 
     if first_guest == nil
-      @user.guests << Guest.create(first_name: params[:user][:first_name], last_name: params[:user][:last_name])
+      current_user.guests << Guest.create(first_name: params[:user][:first_name], last_name: params[:user][:last_name])
     end
 
     if attending?
