@@ -30,7 +30,8 @@ Users can view all attendees, but may not alter anyone on the guest list other t
 Ideally, guests would not overlap by bringing the same plus-one's and plus-one's need not make an account as they are accounted for by their host/user.
 
 database schema is as follows:
-```"users"
+```
+"users"
   t.string  "first_name"
   t.string  "last_name"
   t.string  "username"
