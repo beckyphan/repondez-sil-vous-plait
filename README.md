@@ -3,22 +3,22 @@
 repondez-sil-vous-plait is a sinatra application that allows Users to RSVP for a wedding or other event.
 
 Users must sign-up to access most of the site. Signing-up requires input of a First Name, Last Name, unique username, email address, and a password.
+
 By default, users currently have a guest limit of 3, including themselves (aka User + 2 Plus One's).
 
 A user has_many guests, and each guest has_one meal.
+
+Users can log-in to view all attendees of the event, RSVP or update their RSVP, select their meal choice, add Plus One's, and select their guests' meals. Users who RSVP 'No' will have their RSVP updated and meal choice and guests deleted. Users may also delete their account to delete all stored information.
+
+FYI, to update meal types, the following forms in 'views' must be updated:
+- guests/edit.erb
+- users/edit.erb
 
 Meals are currently pre-set to:
 - Filet Mignon with Garlic Herb Butter
 - Crispy Skin Salmon
 - Mushroom & Chervil Risotto
 - Tofu Banh Mi Sliders
-
-Users can log-in to view all attendees of the event, RSVP/update their RSVP, select their meal choice, add Plus One's, and select their guests' meals.
-Users who RSVP 'No' will have their RSVP updated and meal choice and guests deleted. Users may also delete their account to delete all stored information.
-
-FYI, to update meal types, the following forms in 'views' must be updated:
-- guests/edit.erb
-- users/edit.erb
 
 ## Installation
 
@@ -27,7 +27,9 @@ To use this application locally, fork and clone this repository onto your comput
 ## Usage
 
 This application allows guests to submit data, including name, meal choice for an event, and guests/guest info.
-Users can view all attendees, but may not alter anyone on the guest list other than their own plus-one's.
+
+Users can view all attendees, but may not alter anyone on the guest list other than their own plus-one's. Users can log in anytime to update their plus-one's or plus-one's meals, or update their own meal/RSVP.
+
 Ideally, guests would not overlap by bringing the same plus-one's and plus-one's need not make an account as they are accounted for by their host/user.
 
 database schema is as follows:
