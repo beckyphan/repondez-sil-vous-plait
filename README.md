@@ -46,7 +46,8 @@ database schema is as follows:
 
 "meals"
   t.string  "menu_item"
-  t.string  "notes"```
+  t.string  "notes"
+ ```
 
 In the User and Guest models, I added ```dependent: :destroy``` to its has_many guests/has_one meal so that upon destroying a user, it would destroy its guests, and upon destroying guests it would destroy the guest's meal.
 
