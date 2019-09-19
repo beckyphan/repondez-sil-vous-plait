@@ -8,17 +8,15 @@ By default, users currently have a guest limit of 3, including themselves (aka U
 
 A user has_many guests, and each guest has_one meal.
 
-Users can log-in to view all attendees of the event, RSVP or update their RSVP, select their meal choice, add Plus One's, and select their guests' meals. Users who RSVP 'No' will have their RSVP updated and meal choice and guests deleted. Users may also delete their account to delete all stored information.
-
-FYI, to update meal types, the following forms in 'views' must be updated:
-- guests/edit.erb
-- users/edit.erb
-
 Meals are currently pre-set to:
 - Filet Mignon with Garlic Herb Butter
 - Crispy Skin Salmon
 - Mushroom & Chervil Risotto
 - Tofu Banh Mi Sliders
+
+Users can log-in to view all attendees of the event, RSVP/update their RSVP, select their meal choice, add Plus One's, and select their guests' meals.
+
+Users who RSVP 'No' will have their RSVP updated and meal choice and guests deleted. Users may also delete their account to delete all stored information.
 
 ## Installation
 
@@ -26,10 +24,9 @@ To use this application locally, fork and clone this repository onto your comput
 
 ## Usage
 
-This application allows guests to submit data, including name, meal choice for an event, and guests/guest info.
+This application allows guests to submit data, including name, meal choice for an event, and guests/guest info. It uses ActiveRecord validations in the User model to prevent users from having the same username, which is used to log-in after sign-up.
 
-Users can view all attendees, but may not alter anyone on the guest list other than their own plus-one's. Users can log in anytime to update their plus-one's or plus-one's meals, or update their own meal/RSVP.
-
+Users can view all attendees, but may not alter anyone on the guest list other than their own plus-one's.
 Ideally, guests would not overlap by bringing the same plus-one's and plus-one's need not make an account as they are accounted for by their host/user.
 
 database schema is as follows:
@@ -50,6 +47,12 @@ database schema is as follows:
 "meals"
   t.string  "menu_item"
   t.string  "notes"
+
+In the User and Guest models, I added ```dependent: :destroy``` to its has_many guests/has_one meal so that upon destroying a user, it would destroy its guests, and upon destroying guests it would destroy the guest's meal.
+
+FYI, to update meal types, the following forms in 'views' must be updated:
+- guests/edit.erb
+- users/edit.erb
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
