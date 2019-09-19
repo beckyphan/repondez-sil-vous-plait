@@ -20,7 +20,7 @@ Users who RSVP 'No' will have their RSVP updated and meal choice and guests dele
 
 ## Installation
 
-To use this application locally, fork and clone this repository onto your computer and run ```shotgun``` to get a local server running the application.
+To use this application locally, clone this repository onto your computer and run ```shotgun``` to get a local server running the application.
 
 ## Usage
 
