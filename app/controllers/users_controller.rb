@@ -24,12 +24,12 @@ class UsersController < ApplicationController
   end
 
   delete '/users' do
-    
-    current_user.guests.each do |guest|
-      guest.meal.destroy
-    end
-
-    current_user.guests.destroy_all
+    # added 'dependent: :destroy' to user model to destroy its associated guests (and guest meals) if user destroyed
+    # current_user.guests.each do |guest|
+    #   guest.meal.destroy
+    # end
+    #
+    # current_user.guests.destroy_all
 
     current_user.destroy
 

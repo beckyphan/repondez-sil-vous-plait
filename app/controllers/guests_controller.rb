@@ -88,11 +88,12 @@ class GuestsController < ApplicationController
     @user = current_user
     @user.update(rsvp: "No")
 
-    @user.guests.each do |guest|
-      if guest.meal != nil
-        guest.meal.destroy
-      end
-    end
+    # added 'dependent: :destroy' to guest model to destroy its associated meal if guest destroyed
+    # @user.guests.each do |guest|
+    #   if guest.meal != nil
+    #     guest.meal.destroy
+    #   end
+    # end
 
     @user.guests.destroy_all
 
