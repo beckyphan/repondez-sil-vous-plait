@@ -22,7 +22,7 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     arel (6.0.4)
-    bcrypt (3.1.13)
+    bcrypt (3.1.22)
     bond (0.5.1)
     builder (3.2.3)
     capybara (3.29.0)
